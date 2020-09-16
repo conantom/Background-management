@@ -1,29 +1,92 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/', redirect: '/login'
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/login',
+    name: 'login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/login/login.vue')
+  },
+  {
+    path: '/home',
+    name: 'home',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/home/Home.vue'),
+    redirect:'/homemain',
+    children: [
+      {
+        path: '/homemain',
+        name:'homemain',
+        component:()=>import('../components/homeMai.vue')
+      },
+      {
+        path: '/users',
+        name:'users',
+        component:()=>import('../components/user/users.vue')
+      },
+      {
+        path:"/roles",
+        name:'roles',
+        component:()=>import('../components/user/roles.vue')
+      },
+      {
+        path:'/rights',
+        name:'rights',
+        component:()=>import('../components/user/rights.vue')
+      },
+      {
+        path:'/goods',
+        name:'goods',
+        component:()=>import('../components/user/goods.vue')
+      },
+      {
+        path:'/params',
+        name:'params',
+        component:()=>import('../components/user/params.vue')
+      },
+      {
+        path:'/categories',
+        name:'categories',
+        component:()=>import('../components/user/categories.vue')
+      },
+      {
+        path:'/orders',
+        name:'orders',
+        component:()=>import('../components/user/orders.vue')
+      },
+      {
+        path:'/reports',
+        name:'reports',
+        component:()=>import('../components/user/reports.vue')
+      }
+     
+    ]
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
+})
+router.beforeEach((to, from, next) => {
+  if (to.path === "/login") return next();
+  const took = window.sessionStorage.getItem('took')
+  if (!took) return next('/login')
+  next()
+
+
 })
 
 export default router
