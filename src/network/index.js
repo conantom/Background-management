@@ -51,11 +51,55 @@ const use={
             data
         })
     },
-    removeuse(data){
+    removeuse(data){  //删除单一用户信息
         return info({
             url:`users/${data}`,
             method:"delete",
         })
+    },
+    rightslist(){  //所有权限列表
+        return info({
+            url:`rights/list`,
+            method:"get",
+        })
+    },
+    roles(){  // 角色列表
+        return info({
+            url:`roles`,
+            method:"get",
+        })
+    },
+    roleId(role,id){  //删除角色指定权限
+        return info({
+            url:`roles/${role}/rights/${id}`,
+            method:"delete"
+        })
+    },
+    rightslisttree(){  //所有权限列表{树桩图}
+        return info({
+            url:`rights/tree`,
+            method:"get",
+        })
+    },
+    rights(data,idstr){ //角色授权
+        return info({
+            url:`roles/${idstr}/rights`,
+            method:"post",
+            data:data   
+        })
+    },
+    toroles(){//用户页角色列表
+        return info({
+            url:"roles",
+            method:"get"
+        })
+    },
+    tousers(id,Right){  //分配用户角色
+        return info({
+            url:`users/${id}/role`,
+            method:"put",
+            data:Right
+        })    
     }
 
 }

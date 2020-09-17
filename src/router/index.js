@@ -38,12 +38,12 @@ const routes = [
       {
         path:"/roles",
         name:'roles',
-        component:()=>import('../components/user/roles.vue')
+        component:()=>import('../components/power/roles.vue')
       },
       {
         path:'/rights',
         name:'rights',
-        component:()=>import('../components/user/rights.vue')
+        component:()=>import('../components/power/rights.vue')
       },
       {
         path:'/goods',

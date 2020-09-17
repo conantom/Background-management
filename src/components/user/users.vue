@@ -55,7 +55,7 @@
             ></el-button>
 
             <el-tooltip effect="dark" content="分配角色" placement="top-start" :enterable="false">
-              <el-button type="primary" icon="el-icon-setting" size="mini"></el-button>
+              <el-button type="primary" icon="el-icon-setting" size="mini" @click="RightsetDialog(scope.row)"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -111,6 +111,27 @@
         <el-button type="primary" @click="dialogedit">确 定</el-button>
       </span>
     </el-dialog>
+    <!-- 添加权限 -->
+    <el-dialog title="分配角色" :visible.sync="setrightDialog" width="50%" >
+     <div>
+       <p>当前用户：{{userInfo.username}}</p>
+       <p>当前角色：{{userInfo.role_name}}</p>
+       <p>分配新角色：
+           <el-select v-model="seteRight" placeholder="请选择">
+            <el-option
+              v-for="item in relolist"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id">
+            </el-option>
+          </el-select>
+       </p>
+     </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setrightDialog = false">取 消</el-button>
+        <el-button type="primary" @click="seveRight">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -133,6 +154,7 @@ export default {
       pagesize: 5,
       dialogVisible: false,
       todialogVisible: false,
+      setrightDialog:false,
       addrules: {
         name: [
           { required: true, message: "请输入用户名", trigger: "blur" },
@@ -185,9 +207,41 @@ export default {
           { min: 3, max: 13, message: "不符合电话格式", trigger: "blur" },
         ],
       },
+      userInfo:{},
+      relolist:[],
+      seteRight:"",
     };
   },
   methods: {
+    seveRight(){
+      // console.log(this.userInfo);
+      if(!this.setrightDialog){
+        return this.$message.error("请选择一个新角色")
+      }
+      this.$http.tousers(this.userInfo.id,{rid:this.seteRight}).then(res=>{
+        if(res.data.meta.status!==200){
+          return this.$message.success("设置失败")
+        }
+        this.$message.success("设置成功")
+        this.save()
+
+      }).catch(err=>{
+        console.log(err);
+      })
+      this.setrightDialog=false
+    },
+    RightsetDialog(userInfo){
+      this.userInfo=userInfo
+      this.$http.toroles().then(res=>{
+          if(res.data.meta.status!==200){
+            return this.$message.error("获取错误");
+          }
+          this.relolist=res.data.data
+      }).catch(err=>{
+        console.log(err);
+      })
+      this.setrightDialog=true
+    },
     removopen(id) {
       this.$confirm("此操作将永久删除该用户信息, 是否继续?", "提示", {
         confirmButtonText: "确定",
@@ -201,7 +255,7 @@ export default {
                 type: "success",
                 message: "删除成功!",
               });
-              this.save()
+              this.save();
             }
           });
         })
