@@ -100,6 +100,28 @@ const use={
             method:"put",
             data:Right
         })    
+    },
+    cateList(params){ //商品分类数据列表
+        return info({
+            url:"categories",
+            method:"get",
+            params
+        })
+
+    },
+    categories(params){
+        return info({
+            url:app.categories,
+            method:"get",
+            params
+        })
+    },
+    setcategories(data){
+        return info({
+            url:app.setcategories,
+            method:"post",
+            data
+        })
     }
 
 }

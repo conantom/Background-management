@@ -3,5 +3,7 @@ export const app={
     menus:"menus",//左侧菜单数据
     users:"users",//获取用户列表数据
     use:"users" ,  // 添加用户
+    categories:"categories",//商品分类数据列表
+    setcategories:"categories",//添加分类
 
 }
