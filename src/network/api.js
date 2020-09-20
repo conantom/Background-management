@@ -5,5 +5,6 @@ export const app={
     use:"users" ,  // 添加用户
     categories:"categories",//商品分类数据列表
     setcategories:"categories",//添加分类
+    getcategories:"categories",//获取商品分类数据列表
 
 }

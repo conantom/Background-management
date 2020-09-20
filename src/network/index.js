@@ -122,6 +122,55 @@ const use={
             method:"post",
             data
         })
+    },
+    getcategories(){
+        return info({
+            url:app.getcategories,
+            method:"get"
+        })
+    },
+    attributes(id,params){  //参数列表
+        return info({
+            url:`categories/${id}/attributes`,
+            method:"get",
+            params
+
+        })
+    },
+    postattributes(id,data){//添加动态参数或者静态属性
+        return info({
+            url:`categories/${id}/attributes`,
+            method:"post",
+            data
+        })
+    },
+    attrId(id1,id2,params){ //根据 ID 查询参数
+        return info({
+            url:`categories/${id1}/attributes/${id2}`,
+            method:"get",
+            params
+        })
+    },
+    setattributes(id1,id2,data){ //编辑提交参数
+        return info({
+            url:`categories/${id1}/attributes/${id2}`,
+            method:"put",
+            data
+        })
+    },
+    delecategories(id1,id2){//删除参数
+        return info({
+            url:`categories/${id1}/attributes/${id2}`,
+            method:"delete",
+
+        })
+    },
+    addcategories(id1,id2,data){//编辑提交参数
+        return info({
+            url:`categories/${id1}}/attributes/${id2}`,
+            method:"put",
+            data
+        })
     }
 
 }
