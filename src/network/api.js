@@ -6,5 +6,6 @@ export const app={
     categories:"categories",//商品分类数据列表
     setcategories:"categories",//添加分类
     getcategories:"categories",//获取商品分类数据列表
+    goods:"goods" //添加商品
 
 }

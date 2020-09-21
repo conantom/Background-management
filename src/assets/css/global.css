@@ -10,3 +10,9 @@ html,body,#app{
 .el-card{
     box-shadow: 0px 1px 1px gainsboro !important;
 }
+.el-step__title{
+    font-size: 9px;
+}
+.ql-editor{
+    min-height: 180px;
+}

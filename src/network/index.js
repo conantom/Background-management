@@ -116,6 +116,13 @@ const use={
             params
         })
     },
+    Scategories(){
+        return info({
+            url:app.categories,
+            method:"get",
+            
+        })
+    },
     setcategories(data){
         return info({
             url:app.setcategories,
@@ -171,7 +178,35 @@ const use={
             method:"put",
             data
         })
-    }
+    },
+    getgoods(params){ //获取商品列表数据
+        return info({
+            url:`goods`,
+            method:"get",
+            params
+        })
+    },
+    removegoods(id){ //删除商品
+        return info({
+            url:`goods/${id}`,
+            method:"delete"
+        })
+    },
+   getattributes(id,params){
+       return info({
+           url:`categories/${id}/attributes`,
+           method:"get",
+           params
+       })
+   },
+   goods(data){
+       return info({
+           url:app.goods,
+           method:"post",
+           data
+       })
+
+   }
 
 }
 export default use
