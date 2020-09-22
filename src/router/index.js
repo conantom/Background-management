@@ -75,7 +75,7 @@ const routes = [
       {
         path:'/reports',
         name:'reports',
-        component:()=>import('../components/user/reports.vue')
+        component:()=>import('../components/reports/reports.vue')
       }
      
     ]

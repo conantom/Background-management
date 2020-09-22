@@ -220,6 +220,12 @@ const use={
            method:"get",
            
        })
+   },
+   reports(){
+       return info({
+           url:`reports/type/1`,
+           method:"get"
+       })
    }
 
 }
