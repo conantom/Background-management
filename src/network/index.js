@@ -206,6 +206,20 @@ const use={
            data
        })
 
+   },
+   orders(params){  //订单数据列表
+       return info({
+           url:`orders`,
+           method:"get",
+           params
+       })
+   },
+   kuaidi(){
+       return info({
+           url:`/kuaidi/1106975712662`,
+           method:"get",
+           
+       })
    }
 
 }

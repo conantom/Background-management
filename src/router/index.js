@@ -70,7 +70,7 @@ const routes = [
       {
         path:'/orders',
         name:'orders',
-        component:()=>import('../components/user/orders.vue')
+        component:()=>import('../components/order/orders.vue')
       },
       {
         path:'/reports',
